@@ -19,6 +19,14 @@ function colorizeAnnihilationTexts(rarity, nextRarity, extended){
     if(extended) DOM(`annihilation${rarity.id}`).children[1].style.color = nextRarity.color
 }
 
+function annihilateConfirm(i) {
+    let rarity = rarities[i]
+    let nextRarity = rarities[i+1]
+    if(data.items[i].length < 3) return createAlert("Failure", `Insufficient ${rarity.name} Items`, "Dang.")
+
+    createConfirmation('Are you sure?', `This will ANNIHILATE ${Math.floor(data.items[i].length/3)*3} ${rarity.name} Items for ${Math.floor(data.items[i].length/3)} ${nextRarity.name} Items!`, 'No Way!', 'Yes, lets do this.', annihilate, i)
+}
+
 function annihilate(i){
     let amountGained = Math.floor(data.items[i].length/3)
     let gainedItemNames = []

@@ -81,3 +81,11 @@
     border: 1px solid darkgreen;
     background: black;
 }
+.settingsButton{
+    width: 10rem;
+    min-height: 1.5rem;
+    margin-top: 0.5rem;
+    color: darkgray;
+    background: black;
+    border: 2px solid rgb(128, 128, 128);
+}

@@ -18,6 +18,7 @@
     <script defer src="src/etc/tabs.js"></script>
 
     <script defer src="src/circle.js"></script>
+    <script defer src="src/settings.js"></script>
     <script defer src="src/items/itemRarity.js"></script>
     <script defer src="src/items/itemDB.js"></script>
     <script defer src="src/items/items.js"></script>
@@ -67,9 +68,10 @@
         <button class="tabButton" id="itemsNav" onclick="switchTab('items')" style="color: #cd985c; border-color: #614200">Items</button>
         <button class="tabButton" id="mergeNav" onclick="switchTab('merge')" style="color: #cd985c; border-color: #614200">Annihilation</button>
         <button class="tabButton" id="remembranceNav" onclick="switchTab('remembrance')" style="color: #cd985c; border-color: #614200">Remembrance</button>
+        <button class="tabButton" id="settingsNav" onclick="switchTab('settings')" style="color: #cd985c; border-color: #614200">Settings</button>
     </div>
     <div class="flexBox" id="exPage" style="flex-direction: column">
-        <div id="circleContainer" style="margin-top: 5rem" onclick="openLootbox()">
+        <div id="circleContainer" style="margin-top: 5rem" onclick="data.sToggles[0]?openLootboxConfirm():openLootbox()">
             <div class="circular-progress" id="bar0">
                 <div class="value-container" style="font-family: DosisLight; font-size: 1.2rem">0%</div>
             </div>
@@ -81,17 +83,61 @@
         <i class="centeredTexts" style="color: #838383; margin-top: 2rem">Hover over Items for more information.<br>Glowing Items were naturally created.</i>
     </div>
     <div class="flexBox" id="mergePage" style="flex-direction: column">
-        <button class="annihilateButton" id="annihilation0" onclick="annihilate(0)" style="color: #606060; border: 2px solid #606060">R0</button>
-        <button class="annihilateButton" id="annihilation1" onclick="annihilate(1)" style="color: #606060; border: 2px solid #0091d2">R1</button>
-        <button class="annihilateButton" id="annihilation2" onclick="annihilate(2)" style="color: #606060; border: 2px solid #bd00d2">R2</button>
-        <button class="annihilateButton" id="annihilation3" onclick="annihilate(3)" style="color: #606060; border: 2px solid #d20000">R3</button>
+        <button class="annihilateButton" id="annihilation0" onclick="data.sToggles[1]?annihilateConfirm(0):annihilate(0)" style="color: #606060; border: 2px solid #606060">R0</button>
+        <button class="annihilateButton" id="annihilation1" onclick="data.sToggles[2]?annihilateConfirm(1):annihilate(1)" style="color: #606060; border: 2px solid #0091d2">R1</button>
+        <button class="annihilateButton" id="annihilation2" onclick="data.sToggles[3]?annihilateConfirm(2):annihilate(2)" style="color: #606060; border: 2px solid #bd00d2">R2</button>
+        <button class="annihilateButton" id="annihilation3" onclick="data.sToggles[4]?annihilateConfirm(3):annihilate(3)" style="color: #606060; border: 2px solid #d20000">R3</button>
         <div class="centeredTexts" id="annihilationGainText" style="color: goldenrod; margin-top: 1rem">You exploded a free gwa!</div>
         <i class="centeredTexts" style="color: #838383; margin-top: 2rem">If you have at least three Items of one Rarity they can be ANNIHILATED, creating a random Item of the next Rarity.<br>Mythical Items cannot be ANNIHILATED.</i>
     </div>
     <div class="flexBox" id="remembrancePage" style="flex-direction: column">
         <div class="flexBox" id="remContainer"></div>
-        <button id="remember" style="color: lightgreen; background: black; border: 2px solid #3f943f; width: 25rem; height: 3rem; margin-top: 3rem;" onclick="remember()">SACRIFICE six Wilted Clovers to Remember</button>
+        <button id="remember" style="color: lightgreen; background: black; border: 2px solid #3f943f; width: 25rem; height: 3rem; margin-top: 3rem;" onclick="data.sToggles[5]?rememberConfirm():remember()">SACRIFICE six Wilted Clovers to Remember</button>
         <i class="centeredTexts" style="color: #838383; margin-top: 3rem">You must gather six Items of Unknown Purpose. As you gather them, they will be collected here.</i>
+    </div>
+    <div class="flexBox" id="settingsPage" style="flex-direction: column">
+        <p class="centeredTexts">Consider joining <a href="https://discord.com/invite/dauxGZwc9u" target="_blank">the Discord</a> :)</p>
+        <div class="flexBox" style="margin-top: 0.5rem; margin-bottom: 1rem">
+            <button class="settingsButton" id="gameTab" onclick="switchSubtab('gameSettings', 'settings')">Game</button>
+            <button class="settingsButton" id="togglesTab" onclick="switchSubtab('toggles', 'settings')" style="margin-left: 0.5rem">Confirmations</button>
+            <button class="settingsButton" id="uiTab" onclick="switchSubtab('ui', 'settings')" style="margin-left: 0.5rem">UI</button>
+            <button class="settingsButton" id="savingTab" onclick="switchSubtab('saving', 'settings')" style="margin-left: 0.5rem">Saving</button>
+            <button class="settingsButton" id="technicalTab" onclick="switchSubtab('tech', 'settings')" style="margin-left: 0.5rem; color: #c93e00">Advanced</button>
+        </div>
+        <div class="flexBox" id="gameSettingsSubPage" style="flex-direction: column;">
+            <button class="settingsButton" id="offlineProgressToggle" onclick="settingsToggle(-1)" style="width: 20rem">Toggle Offline Progress</button>
+            <button class="settingsButton" id="settingsToggle6" onclick="settingsToggle(6)" style="width: 20rem">aaa</button>
+            <button class="settingsButton" id="settingsToggle7" onclick="settingsToggle(7)" style="width: 20rem">aaa</button>
+        </div>
+        <div class="flexBox" id="togglesSubPage" style="display: none; flex-direction: column">
+            <button class="settingsButton" id="settingsToggle0" onclick="settingsToggle(0)" style="width: 24rem">aaa</button>
+            <button class="settingsButton" id="settingsToggle1" onclick="settingsToggle(1)" style="width: 24rem">aaa</button>
+            <button class="settingsButton" id="settingsToggle2" onclick="settingsToggle(2)" style="width: 24rem">aaa</button>
+            <button class="settingsButton" id="settingsToggle3" onclick="settingsToggle(3)" style="width: 24rem">aaa</button>
+            <button class="settingsButton" id="settingsToggle4" onclick="settingsToggle(4)" style="width: 24rem">aaa</button>
+            <button class="settingsButton" id="settingsToggle5" onclick="settingsToggle(5)" style="width: 24rem">aaa</button>
+        </div>
+        <div class="flexBox" id="uiSubPage" style="display: none; flex-direction: column">
+            <button class="settingsButton" id='changePrecision' onclick="createPrompt('Input New Precision', changePrecision, true)" style="width: 22rem">Change Circle Percentage Decimal Precision <span style="color: #8080FF">[0]</span></button>
+            <div class="flexBox" id="gwaifySettingContainer" style="flex-direction: row">
+                <button class="settingsButton" id="gwaifyToggle" onclick="settingsToggle(-2)" style="width: 22rem; height: 2rem"><img src='https://cdn.discordapp.com/emojis/853002327362895882.webp?size=24'> Display</button>
+                <button class="settingsButton" style="height: 2rem; width: 2rem; margin-left: 0.5rem" onclick="gwaifyExplain()">I</button>
+            </div>
+            <t class="centeredTexts" style="margin-top: 1rem;">Changing any of these from their default may cause lag!</t>
+        </div>
+        <div class="flexBox" id="techSubPage" style="display: none; flex-direction: column">
+            <button class="settingsButton" id="settingsToggle8" onclick="settingsToggle(8)" style="width: 24rem"></button>
+            <t class="centeredTexts" style="margin-top: 1rem; font-family: DosisBold; color: darkred">Changing these could have unintended consequences!!!</t>
+            <t class="centeredTexts" style="color: #a60000">Each of the options here could give a performance boost in SOME cases, possibly at the cost of proper functionality of the game; they are niche optimizations for niche features :)</t>
+        </div>
+        <div class="flexBox" id="savingSubPage" style="display: none; flex-direction: column">
+            <button class="settingsButton" onclick="save()">Manual Save</button>
+            <button class="settingsButton" onclick="exportSave()">Export your Save</button>
+            <button class="settingsButton" onclick="downloadSave()">Download your Save</button>
+            <button class="settingsButton" onclick="createPrompt('Import SaveData', importSave, true)">Import your Save</button>
+            <button class="settingsButton" onclick="createConfirmation('Are you sure?', 'Are you absolutely sure you want to do this?\nThis will export your save (just in case) but delete your save from LocalStorage.', 'No Way!', 'Yes, I understand the consequences.', fullReset)" style="color: red">Delete your Save</button>
+        </div>
+        <div class="centeredTexts" id="versionText" style="margin-top: 3rem; color: #009696; font-family: DosisBold;">Version</div>
     </div>
 </div>
 </body>

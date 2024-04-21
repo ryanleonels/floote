@@ -2,7 +2,9 @@
 const D = x => new Decimal(x)
 
 //Version Flags
-const VERSION = "0.2"
+const VERSION = "0.2gwa"
+const VERSION_NAME = "gwa's Mod"
+const VERSION_DATE = "April 21st, 2024"
 const SAVE_PATH = () => "nxfFlootesave"
 
 //create all the variables in a data object for saving
@@ -13,9 +15,12 @@ function getDefaultObject() {
         circle: {progress: 0},
         items: [[], [], [], [], [], []],
 
+        sToggles: settingsDefaults,
+        precision: 2,
         lastTick: 0,
         loadedVersion: VERSION,
         offline: true,
+        gword: {unl: false, enabled: false},
     }
 }
 let data = getDefaultObject()
@@ -31,7 +36,10 @@ function save(){
 function load() {
     let savedata = JSON.parse(window.localStorage.getItem(SAVE_PATH()))
     if (savedata !== undefined) fixSave(data, savedata)
-    return fixOldSaves()
+    let extra = fixOldSaves()
+    createAlert('Welcome Back!', `You've loaded into Floote v${VERSION}: ${VERSION_NAME}\nEnjoy!`, 'Thanks!')
+
+    return extra
 }
 
 //fix saves
@@ -107,6 +115,12 @@ async function downloadSave() {
     }
 }
 function importSave(x) {
+    if(x === "gwa"){
+        if(!data.gword.unl) createAlert('Secret!', 'You have unlocked the secret <img src=\'https://cdn.discordapp.com/emojis/853002327362895882.webp?size=24\'> Number Display! You can now enable or disable it in Settings :) If you\'re curious what those gwas mean check out the Info Box next to the <img src=\'https://cdn.discordapp.com/emojis/853002327362895882.webp?size=24\'> Display Setting!', '<img src=\'https://cdn.discordapp.com/emojis/853002327362895882.webp?size=24\'>!')
+        data.gword.unl = true
+        data.gword.enabled = true
+        return closeModal('prompt')
+    }
     try {
         if(x.length <= 0) {
             DOM('promptContainer').style.display = 'none'

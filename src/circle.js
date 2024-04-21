@@ -14,6 +14,22 @@ function progress(x, diff){
     data.circle.progress += (1+getCircleSpeedIncrease())*diff
 }
 
+function openLootboxConfirm(){
+    if(data.circle.progress < 100) {
+        let text = document.getElementById("lootboxText")
+
+        text.innerHTML = `The Circle is not yet ready.`
+        text.classList.add("fade-in")
+        setTimeout(function () {
+            text.classList.remove("fade-in")
+        }, 2000);
+
+        return;
+    }
+
+    createConfirmation('Are you sure?', 'Clicking on The Circle will give you a random item, but it will reset your Circle progress!', 'No Way!', 'Yes, lets do this.', openLootbox)
+}
+
 function openLootbox(stack = 0){
     let canOpen = data.circle.progress >= 100
     let text = document.getElementById("lootboxText")

@@ -4,7 +4,7 @@ function mainLoop() {
     let diff = data.offline ? Math.max((Date.now() - data.lastTick), 0) : 50
 
     // Used for Offline Progress
-    let uDiff = diff/1000
+    let uDiff = data.sToggles[8] ? diff : diff/1000
 
     // Update lastTick
     data.lastTick = Date.now()

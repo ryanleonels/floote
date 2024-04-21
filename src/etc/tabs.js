@@ -13,3 +13,26 @@ function switchTab(tab, loading){
     if(tab === 'remembrance') makeRemembrance()
     else document.getElementById(`remContainer`).replaceChildren()
 }
+
+let settingsTab = "gameSettings"
+
+function switchSubtab(t, mode){
+    if(!isTabUnlocked(t)) return
+
+    // Special Settings Rules
+    if(mode === "settings"){
+        DOM(`${settingsTab}SubPage`).style.display = `none`
+        DOM(`${t}SubPage`).style.display = `flex`
+        settingsTab = t
+
+        if(t === 'ui'){
+            DOM(`gwaifySettingContainer`).style.display = data.gword.unl ? 'block' : 'none'
+        }
+    }
+}
+
+function isTabUnlocked(t){
+    switch (t) {
+        default: return true
+    }
+}

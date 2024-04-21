@@ -1,9 +1,9 @@
 //Important Constants for Loading
-const TABS = ["ex", "items", "merge", "remembrance"]
+const TABS = ["ex", "items", "merge", "remembrance", "settings"]
 
 const uHTML = {
     update(){
-
+        //updateCircleHTML()
     },
     load(){
         //Load Tab Displays
@@ -11,5 +11,9 @@ const uHTML = {
             DOM(`${TABS[i]}Page`).style.display = 'none'
         }
         switchTab(data.nav.current, true)
+
+        //Load Settings
+        loadSettings()
+        DOM(`versionText`).innerText = `You're playing Floote v${VERSION}: ${VERSION_NAME}\n Last Update: ${VERSION_DATE}`
     }
 }
