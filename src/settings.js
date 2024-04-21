@@ -6,7 +6,7 @@ const SETTINGS_DESCS = [
     "x1000 Gameplay Speed",
 ]
 const settingsDefaults = [
-    false, false, false, false, false, false, true, true, false,
+    true, true, true, true, true, true, true, true, false,
 ]
 function settingsToggle(i){
     if (i === -1){
