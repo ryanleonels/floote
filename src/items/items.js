@@ -113,6 +113,7 @@ function hasAllItems(rarity = -1) {
     let rarityFrom = (rarity == -1) ? 0 : rarity
     let rarityTo = (rarity == -1) ? itemsMap.length - 1 : rarity
     for (let i = rarityFrom; i <= rarityTo; i++) {
+        if (itemsMap[i].length < items[i].length) return false
         for (let j = 0; j < itemsMap[i].length; j++) {
             if (!itemsMap[i][j].total) return false
         }

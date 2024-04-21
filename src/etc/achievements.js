@@ -116,7 +116,7 @@ const achievements = [
     {
         id: 36,
         name: "Ultimate Collector",
-        description: "Collect All Items",
+        description: "Collect All Items of All Rarities",
         req: () => hasAllItems()
     },
     {
