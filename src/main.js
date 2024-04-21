@@ -24,7 +24,7 @@ function mainLoop() {
 
 window.onload = function () {
     let extra = false
-    try { extra = load() } catch(e){ console.log('New Save!\nIf you\'re seeing this, welcome :)') }
+    try { extra = load() } catch(e){ console.log('New Save!\nIf you\'re seeing this, welcome :)'); generateItemsMap(); }
     console.log(extra)
     uHTML.load()
 
