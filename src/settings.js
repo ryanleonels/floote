@@ -38,7 +38,6 @@ function changePrecision(x){
     DOM(`changePrecision`).children[0].innerHTML = `[${data.precision}]`
 }
 
-
 function loadSettings(){
     DOM(`offlineProgressToggle`).innerHTML = `Toggle Offline Progress ${settingsColor(data.offline)}`
     DOM(`gwaifyToggle`).innerHTML = `<img src='https://cdn.discordapp.com/emojis/853002327362895882.webp?size=24'> Display ${settingsColor(data.gword.enabled)}`

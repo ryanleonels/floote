@@ -35,9 +35,9 @@ const rarities = [
         id: 4,
     },
     {
-        name: "",
+        name: "Remembrance",
         color: "lightgreen",
-        effectDesc: "",
+        effectDesc: "Increases Circle Speed Multiplier by 1.",
         effect: 0,
         id: 4,
     },

@@ -11,7 +11,7 @@ function progress(x, diff){
     )`
 
     if(data.circle.progress >= 100) return data.circle.progress = 100
-    data.circle.progress += (1+getCircleSpeedIncrease())*diff
+    data.circle.progress += (1+getCircleSpeedIncrease())*getCircleSpeedMultiplier()*diff
 }
 
 function openLootboxConfirm(){
@@ -55,4 +55,31 @@ function openLootbox(stack = 0){
 // This function may seem unnecessary, but I'm keeping it in case I expand the Speed boost system in the future
 function getCircleSpeedIncrease(){
     return getTotalRarityEffect()
+}
+
+function getCircleSpeedMultiplier(){
+    return 1+data.items[5].length
+}
+
+function updateCircleHTML()
+{
+    let text = document.getElementById("informationText")
+    if (!data.sToggles[6]) {
+        text.innerHTML = ""
+        return;
+    }
+    text.innerHTML = `The base Circle Speed is ${format(1, data.precision)}% per second`
+    for (let i = 0; i < 4; i++) {
+        let rarity = rarities[i]
+        let color = i == 0 ? '#969696' : rarity.color
+        let cnt = data.items[i].length
+        let effect = getRarityEffect(i)
+        text.innerHTML += `<br>You have <span style="color: ${color};">${cnt} ${rarity.name}</span> items, increasing your Circle Speed by ${format(effect, data.precision)}`
+    }
+    let rarity = rarities[5]
+    let color = rarity.color
+    let cnt = data.items[5].length
+    let effect = cnt + 1
+    text.innerHTML += `<br>You have <span style="color: ${color};">${cnt} ${rarity.name}</span> items, multiplying your Circle Speed by ${format(effect, data.precision)}`
+    text.innerHTML += `<br>Your Circle Speed is ${format((1+getCircleSpeedIncrease())*getCircleSpeedMultiplier(), data.precision)}% per second`
 }

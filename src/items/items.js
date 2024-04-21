@@ -18,7 +18,7 @@ function makeItems(){
             item.style.marginLeft = `0.4rem`
             item.style.marginRight = `0.4rem`
 
-            item.setAttribute("tooltip", `A ${rarity.name} ${data.items[i][j].name}${i !== 5 ? `\n${rarity.effectDesc}` : ``}\n\n"${data.items[i][j].desc}"`)
+            item.setAttribute("tooltip", `A ${rarity.name} ${data.items[i][j].name}${i !== 6 ? `\n${rarity.effectDesc}` : ``}\n\n"${data.items[i][j].desc}"`)
 
             let icon = document.createElement('img')
             icon.src = `${getItemSprite(data.items[i][j].name)}`

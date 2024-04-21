@@ -3,7 +3,7 @@ const TABS = ["ex", "items", "merge", "remembrance", "settings"]
 
 const uHTML = {
     update(){
-        //updateCircleHTML()
+        updateCircleHTML()
     },
     load(){
         //Load Tab Displays
