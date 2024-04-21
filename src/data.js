@@ -38,6 +38,7 @@ function load() {
     let savedata = JSON.parse(window.localStorage.getItem(SAVE_PATH()))
     if (savedata !== undefined) fixSave(data, savedata)
     let extra = fixOldSaves()
+    generateItemsMap()
     createAlert('Welcome Back!', `You've loaded into Floote v${VERSION}: ${VERSION_NAME}\nEnjoy!`, 'Thanks!')
 
     return extra

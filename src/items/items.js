@@ -7,6 +7,42 @@ function makeItems(){
     firstRow.style.marginTop = '4rem'
     document.getElementById('itemRowContainer').append(firstRow)
 
+    if (data.sToggles[7]) {
+        for (let i = itemsMap.length-1; i > 0-1; i--) {
+            for (let j = 0; j < itemsMap[i].length; j++) {
+                let item = document.createElement('button')
+                let rarity = rarities[i]
+
+                if(itemsMap[i][j].natural) item.style.boxShadow = `0px 0px 10px 0px ${rarity.color}`
+                item.style.border = `1px solid ${rarity.color}`
+                item.style.background = 'black'
+                item.style.marginLeft = `0.4rem`
+                item.style.marginRight = `0.4rem`
+
+                item.setAttribute("tooltip", `A ${rarity.name} ${itemsMap[i][j].name}${i !== 6 ? `\n${rarity.effectDesc}` : ``}\n\n"${itemsMap[i][j].desc}"`)
+
+                let icon = document.createElement('img')
+                icon.src = `${getItemSprite(itemsMap[i][j].name)}`
+
+                item.append(icon)
+                let color = rarity.id === 0 ? '#969696' : rarity.color
+                item.innerHTML += `<br><span style="color: ${color}">Natural x${itemsMap[i][j].natural}<br>Total x${itemsMap[i][j].total}</span>`
+                document.getElementById(`itemRow${rowNum}`).append(item)
+
+                pushed++
+                if(pushed >= 8){
+                    let row = document.createElement('div')
+                    rowNum++
+                    row.id = `itemRow${rowNum}`
+                    row.style.marginTop = '0.5rem'
+                    document.getElementById(`itemRowContainer`).append(row)
+                    pushed = 0
+                }
+            }
+        }
+        return
+    }
+
     for (let i = data.items.length-1; i > 0-1; i--) {
         for (let j = 0; j < data.items[i].length; j++) {
             let item = document.createElement('button')

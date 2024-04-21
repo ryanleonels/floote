@@ -69,13 +69,36 @@ function annihilate(i){
 
 function generateAnnihilationGainText(gainedItemNames){
     let bound = gainedItemNames.length
+    let gainedItemNameList = gainedItemNames
 
-    if(bound === 1) return gainedItemNames[0]
-    if(bound === 2) return `${gainedItemNames[0]} and ${gainedItemNames[1]}`
+    if (data.sToggles[7]) {
+        let gainedItemList = []
+        for (let i = 0; i < bound; i++) {
+            let newItem = true;
+            for (let j = 0; j < gainedItemList.length; j++) {
+                if (gainedItemList[j].name == gainedItemNames[i]) {
+                    newItem = false;
+                    gainedItemList[j].total++;
+                    break;
+                }
+            }
+            if (newItem) {
+                gainedItemList.push({name: gainedItemNames[i], total: 1});
+            }
+        }
+        gainedItemNameList = []
+        for (let i = 0; i < gainedItemList.length; i++) {
+            gainedItemNameList.push(gainedItemList[i].total + " " + gainedItemList[i].name + (gainedItemList[i].total > 1 ? "s" : ""));
+        }
+        bound = gainedItemNameList.length
+    }
+
+    if(bound === 1) return gainedItemNameList[0]
+    if(bound === 2) return `${gainedItemNameList[0]} and ${gainedItemNameList[1]}`
 
     let text = ""
     for (let i = 0; i < bound; i++) {
-        text += `${gainedItemNames[i]}`
+        text += `${gainedItemNameList[i]}`
         if(i === bound - 1) continue
 
         if(i === bound - 2) text += ', and '
