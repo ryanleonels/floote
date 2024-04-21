@@ -69,7 +69,7 @@ function updateCircleHTML()
         return;
     }
     text.innerHTML = `The base Circle Speed is ${format(1, data.precision)}% per second`
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i <= 4; i++) {
         let rarity = rarities[i]
         let color = i == 0 ? '#969696' : rarity.color
         let cnt = data.items[i].length
