@@ -40,13 +40,27 @@ function remember(){
     let clover = getRandomItem(5)
     clover.natural = true
     data.items[5].push(clover)
+    for (let i = 0; i < itemsMap[5].length; i++) {
+        if (itemsMap[5][i].name == clover.name) {
+            itemsMap[5][i].total++
+            itemsMap[5][i].natural++
+        }
+    }
 
+    let natural = 0
     let removed = 0
     for (let i = 0; i < data.items[4].length; i++) {
         if(removed >= remembranceReq) break;
         if(data.items[4][i].name === "Wilted Clover"){
+            if(data.items[4][i].natural) natural++
             data.items[4] = data.items[4].slice(0, i).concat(data.items[4].slice(i+1))
             removed++
+        }
+    }
+    for (let i = 0; i < itemsMap[4].length; i++) {
+        if (itemsMap[4][i].name === "Wilted Clover") {
+            itemsMap[4][i].total -= remembranceReq
+            itemsMap[4][i].natural -= natural
         }
     }
     refreshRemembrance()

@@ -29,6 +29,7 @@ window.onload = function () {
     uHTML.load()
 
     if(extra) fixOldSavesP2()
+    generateItemsMap()
 }
 
 window.setInterval(function () {

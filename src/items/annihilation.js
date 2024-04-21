@@ -36,9 +36,23 @@ function annihilate(i){
         let item = getRandomItem(i+1)
         item.natural = false
         data.items[i+1].push(item)
+        for (let k = 0; k < itemsMap[i+1].length; k++) {
+            if (itemsMap[i+1][k].name == item.name) {
+                itemsMap[i+1][k].total++
+            }
+        }
         gainedItemNames.push(item.name)
     }
 
+    for (let j = 0; j < amountGained * 3; j++) {
+        let item = data.items[i][j]
+        for (let k = 0; k < itemsMap[i].length; k++) {
+            if (itemsMap[i][k].name == item.name) {
+                itemsMap[i][k].total--
+                if (item.natural) itemsMap[i][k].natural--
+            }
+        }
+    }
     data.items[i] = data.items[i].splice(amountGained*3)
 
     let text = document.getElementById("annihilationGainText");

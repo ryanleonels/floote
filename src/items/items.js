@@ -46,3 +46,40 @@ function getTotalItems(bound = data.items.length){
     }
     return total
 }
+
+let itemsMap = [[], [], [], [], [], []];
+
+function generateItemsMap() {
+    for (let i = 0; i < items.length; i++) {
+        for (let j = 0; j < items[i].length; j++) {
+            itemsMap[i][j] = {name: items[i][j].name, desc: items[i][j].desc, natural: 0, total: 0};
+        }
+        for (let j = 0; j < data.items[i].length; j++) {
+            for (let k = 0; k < items[i].length; k++) {
+                if (data.items[i][j].name == itemsMap[i][k].name) {
+                    itemsMap[i][k].total++;
+                    if (data.items[i][j].natural) itemsMap[i][k].natural++;
+                }
+            }
+        }
+    }
+}
+
+function hasNaturalItem(rarity, natural = true) {
+    for (let i = 0; i < itemsMap[rarity].length; i++) {
+        if (natural && itemsMap[rarity][i].natural > 0) return true
+        if (!natural && itemsMap[rarity][i].total > 0 && itemsMap[rarity][i].total > itemsMap[rarity][i].natural) return true
+    }
+    return false
+}
+
+function hasAllItems(rarity = -1) {
+    let rarityFrom = (rarity == -1) ? 0 : rarity
+    let rarityTo = (rarity == -1) ? itemsMap.length - 1 : rarity
+    for (let i = rarityFrom; i <= rarityTo; i++) {
+        for (let j = 0; j < itemsMap[i].length; j++) {
+            if (!itemsMap[i][j].total) return false
+        }
+    }
+    return true
+}

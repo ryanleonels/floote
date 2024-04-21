@@ -39,7 +39,7 @@ const rarities = [
         color: "lightgreen",
         effectDesc: "Increases Circle Speed Multiplier by 1.",
         effect: 0,
-        id: 4,
+        id: 5,
     },
 ]
 

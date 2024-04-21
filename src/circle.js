@@ -50,6 +50,12 @@ function openLootbox(stack = 0){
 
     data.circle.progress = 0
     data.items[item.rarity].push(item)
+    for (let i = 0; i < itemsMap[item.rarity].length; i++) {
+        if (itemsMap[item.rarity][i].name == item.name) {
+            itemsMap[item.rarity][i].total++
+            itemsMap[item.rarity][i].natural++
+        }
+    }
 }
 
 // This function may seem unnecessary, but I'm keeping it in case I expand the Speed boost system in the future
