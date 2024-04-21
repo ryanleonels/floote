@@ -15,6 +15,7 @@
 
     <script defer src="src/etc/modal.js"></script>
     <script defer src="src/etc/hotkeys.js"></script>
+    <script defer src="src/etc/achievements.js"></script>
     <script defer src="src/etc/tabs.js"></script>
 
     <script defer src="src/gwaifyNumber.js"></script>
@@ -69,6 +70,7 @@
         <button class="tabButton" id="itemsNav" onclick="switchTab('items')" style="color: #cd985c; border-color: #614200">Items</button>
         <button class="tabButton" id="mergeNav" onclick="switchTab('merge')" style="color: #cd985c; border-color: #614200">Annihilation</button>
         <button class="tabButton" id="remembranceNav" onclick="switchTab('remembrance')" style="color: #cd985c; border-color: #614200">Remembrance</button>
+        <button class="tabButton" id="achNav" onclick="switchTab('ach')" style="color: #cd985c; border-color: #614200">Achievements</button>
         <button class="tabButton" id="settingsNav" onclick="switchTab('settings')" style="color: #cd985c; border-color: #614200">Settings</button>
     </div>
     <div class="flexBox" id="exPage" style="flex-direction: column">
@@ -97,6 +99,7 @@
         <button id="remember" style="color: lightgreen; background: black; border: 2px solid #3f943f; width: 25rem; height: 3rem; margin-top: 3rem;" onclick="data.sToggles[5]?rememberConfirm():remember()">SACRIFICE six Wilted Clovers to Remember</button>
         <i class="centeredTexts" style="color: #838383; margin-top: 3rem">You must gather six Items of Unknown Purpose. As you gather them, they will be collected here.</i>
     </div>
+    <div class="flexBox" id="achPage" style="flex-direction: column;"></div>
     <div class="flexBox" id="settingsPage" style="flex-direction: column">
         <p class="centeredTexts">Consider joining <a href="https://discord.com/invite/dauxGZwc9u" target="_blank">the Discord</a> :)</p>
         <div class="flexBox" style="margin-top: 0.5rem; margin-bottom: 1rem">

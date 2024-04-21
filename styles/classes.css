@@ -81,6 +81,15 @@
     border: 1px solid darkgreen;
     background: black;
 }
+.achievement{
+    width: 7rem;
+    height: 5rem;
+    border: 1px solid #464646;
+    background: #151515;
+    margin-left: 0.5rem;
+    margin-top: 0.3rem;
+    color: #9d5700;
+}
 .settingsButton{
     width: 10rem;
     min-height: 1.5rem;

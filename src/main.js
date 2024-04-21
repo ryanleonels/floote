@@ -14,6 +14,9 @@ function mainLoop() {
 
     progress(data.circle.progress, uDiff)
 
+    // Update Achievements
+    checkAchs()
+
     // Update HTML
     uHTML.update()
 }

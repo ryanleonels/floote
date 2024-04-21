@@ -1,5 +1,5 @@
 //Important Constants for Loading
-const TABS = ["ex", "items", "merge", "remembrance", "settings"]
+const TABS = ["ex", "items", "merge", "remembrance", "ach", "settings"]
 
 const uHTML = {
     update(){
@@ -15,5 +15,8 @@ const uHTML = {
         //Load Settings
         loadSettings()
         DOM(`versionText`).innerText = `You're playing Floote v${VERSION}: ${VERSION_NAME}\n Last Update: ${VERSION_DATE}`
+
+        //Initialize all Tabs
+        initAchs()
     }
 }

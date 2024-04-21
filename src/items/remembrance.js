@@ -31,7 +31,7 @@ function getClovers(){
 function rememberConfirm(){
     if(getClovers() < remembranceReq) return
 
-    createConfirmation('Are you certain?', 'You will lose six Wilted Clovers in exchange for a remembrance item!', 'No Way!', 'Go Ahead!', remember)
+    createConfirmation('Are you certain?', 'You will lose six Wilted Clovers in exchange for a Remembrance item!', 'No Way!', 'Go Ahead!', remember)
 }
 
 function remember(){

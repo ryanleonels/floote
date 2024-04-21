@@ -18,6 +18,7 @@ function getDefaultObject() {
         sToggles: settingsDefaults,
         precision: 2,
         lastTick: 0,
+        achs: Array(achievements.length).fill(false),
         loadedVersion: VERSION,
         offline: true,
         gword: {unl: false, enabled: false},
