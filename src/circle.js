@@ -4,7 +4,7 @@ let progressBar = document.getElementById("bar0")
 function progress(x, diff){
     let progressValue = x >= 100 ? 100 : x
 
-    valueContainer.innerHTML = `${gwaifyNumber(format(progressValue))}%`
+    valueContainer.innerHTML = `${gwaifyNumber(format(progressValue, data.precision))}%`
     progressBar.style.background = `conic-gradient(
       rgb(232, 139, 16) ${progressValue * 3.6}deg,
       #000 ${progressValue * 3.6}deg

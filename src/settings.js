@@ -31,11 +31,13 @@ function settingsColor(bool){
         : `<span style="color: #ce0b0b">[${formatBool(bool)}]</span>`
 }
 
-function toggleX1000(){
-    data.x1000 = !data.x1000
-    DOM(`x1000Toggle`).innerHTML = `Toggle x1000 Gameplay Speed ${settingsColor(data.x1000)}`
-    return save()
+// Changes the Number's Precision
+function changePrecision(x){
+    if (isNaN(Math.floor(x))) return createAlert('Failure', 'Invalid Input.', `Oops.`)
+    data.precision = Math.floor(x)
+    DOM(`changePrecision`).children[0].innerHTML = `[${data.precision}]`
 }
+
 
 function loadSettings(){
     DOM(`offlineProgressToggle`).innerHTML = `Toggle Offline Progress ${settingsColor(data.offline)}`
