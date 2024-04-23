@@ -22,6 +22,7 @@ function getDefaultObject() {
         loadedVersion: VERSION,
         offline: true,
         gword: {unl: false, enabled: false},
+        ms: 50,
     }
 }
 let data = getDefaultObject()

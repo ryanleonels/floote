@@ -29,8 +29,8 @@ window.onload = function () {
     uHTML.load()
 
     if(extra) fixOldSavesP2()
-}
 
-window.setInterval(function () {
-    mainLoop()
-}, 50);
+    window.setInterval(function () {
+        mainLoop()
+    }, data.ms);
+}

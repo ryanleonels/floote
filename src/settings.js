@@ -38,6 +38,16 @@ function changePrecision(x){
     DOM(`changePrecision`).children[0].innerHTML = `[${data.precision}]`
 }
 
+// Changes the Millisecond Interval
+function changeMs(x){
+    if (!x) return
+    if (isNaN(Math.floor(x))) return createAlert('Failure', 'Invalid Input.', `Oops.`)
+    data.ms = Math.min(Math.max(Math.floor(x),20),1000)
+    DOM(`changeMsInterval`).children[0].innerHTML = `[${data.ms}ms]`
+    save();
+    location.reload();
+}
+
 function loadSettings(){
     DOM(`offlineProgressToggle`).innerHTML = `Toggle Offline Progress ${settingsColor(data.offline)}`
     DOM(`gwaifyToggle`).innerHTML = `<img src='https://cdn.discordapp.com/emojis/853002327362895882.webp?size=24'> Display ${settingsColor(data.gword.enabled)}`
