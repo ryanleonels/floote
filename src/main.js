@@ -1,7 +1,7 @@
 function mainLoop() {
     // Calculate diff and usableDiff
     if(data.lastTick === 0) data.lastTick = Date.now()
-    let diff = data.offline ? Math.max((Date.now() - data.lastTick), 0) : 50
+    let diff = data.offline ? Math.max((Date.now() - data.lastTick), 0) : data.ms
 
     // Used for Offline Progress
     let uDiff = data.sToggles[8] ? diff : diff/1000
