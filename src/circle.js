@@ -11,7 +11,7 @@ function progress(x, diff){
     )`
 
     if(data.circle.progress >= 100) return data.circle.progress = 100
-    data.circle.progress += (1+getCircleSpeedIncrease())*getCircleSpeedMultiplier()*diff
+    data.circle.progress += getCircleSpeed()*diff
 }
 
 function openLootboxConfirm(){
@@ -37,23 +37,48 @@ function openLootbox(stack = 0){
     if(!canOpen) text.innerHTML = `The Circle is not yet ready.`
     text.classList.add("fade-in")
     setTimeout(function () {
-        text.classList.remove("fade-in")
+        text.classList.remove("fade-in");
+        text.innerHTML = "";
     }, 2000);
 
     if(!canOpen) return
 
-    let rarity = stack > 0 ? getRarity(stack) : getRarity(getRandom(1, 101))
-    let item = getRandomItem(rarity.id)
-    item.natural = true
-    text.innerHTML = `You got a <span>${rarity.name} <b>${item.name}</b></span>!`
-    text.children[0].style.color = rarity.color
+    let itemsPerTick = Math.max(Math.floor(getCircleSpeed()*(data.ms/1000)/100), 1)
 
-    data.circle.progress = 0
-    data.items[item.rarity].push(item)
-    for (let i = 0; i < itemsMap[item.rarity].length; i++) {
-        if (itemsMap[item.rarity][i].name == item.name) {
-            itemsMap[item.rarity][i].total++
-            itemsMap[item.rarity][i].natural++
+    if (itemsPerTick > 1 && data.sToggles[9]) {
+        data.circle.progress = 0
+        text.innerHTML = "You got a ";
+        for (let i = 0; i < itemsPerTick; i++) {
+            let rarity = stack > 0 ? getRarity(stack) : getRarity(getRandom(1, 101))
+            let item = getRandomItem(rarity.id)
+            item.natural = true
+            text.innerHTML += `<span>${rarity.name} <b>${item.name}</b></span>`
+            if(i == itemsPerTick - 2) text.innerHTML += ', and '
+            if(i < itemsPerTick - 2) text.innerHTML += ', '
+            text.children[i].style.color = rarity.color
+            data.items[item.rarity].push(item)
+            for (let j = 0; j < itemsMap[item.rarity].length; j++) {
+                if (itemsMap[item.rarity][j].name == item.name) {
+                    itemsMap[item.rarity][j].total++
+                    itemsMap[item.rarity][j].natural++
+                }
+            }
+        }
+        text.innerHTML += "!"
+    } else {
+        let rarity = stack > 0 ? getRarity(stack) : getRarity(getRandom(1, 101))
+        let item = getRandomItem(rarity.id)
+        item.natural = true
+        text.innerHTML = `You got a <span>${rarity.name} <b>${item.name}</b></span>!`
+        text.children[0].style.color = rarity.color
+
+        data.circle.progress = 0
+        data.items[item.rarity].push(item)
+        for (let i = 0; i < itemsMap[item.rarity].length; i++) {
+            if (itemsMap[item.rarity][i].name == item.name) {
+                itemsMap[item.rarity][i].total++
+                itemsMap[item.rarity][i].natural++
+            }
         }
     }
 }
@@ -65,6 +90,10 @@ function getCircleSpeedIncrease(){
 
 function getCircleSpeedMultiplier(){
     return 1+data.items[5].length
+}
+
+function getCircleSpeed(){
+    return (1+getCircleSpeedIncrease())*getCircleSpeedMultiplier()
 }
 
 function updateCircleHTML()
@@ -87,5 +116,5 @@ function updateCircleHTML()
     let cnt = data.items[5].length
     let effect = cnt + 1
     text.innerHTML += `<br>You have <span style="color: ${color};">${cnt} ${rarity.name}</span> items, multiplying your Circle Speed by ${format(effect, data.precision)}`
-    text.innerHTML += `<br>Your Circle Speed is ${format((1+getCircleSpeedIncrease())*getCircleSpeedMultiplier(), data.precision)}% per second`
+    text.innerHTML += `<br>Your Circle Speed is ${format(getCircleSpeed(), data.precision)}% per second`
 }

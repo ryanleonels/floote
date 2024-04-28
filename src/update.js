@@ -7,7 +7,6 @@ const uHTML = {
         document.getElementById(`itemRowContainer`).replaceChildren()
         makeItems()
         updateAnnihilationTexts()
-        document.getElementById(`remContainer`).replaceChildren()
         refreshRemembrance()
     },
     load(){

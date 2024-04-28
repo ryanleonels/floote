@@ -1,4 +1,5 @@
 function makeItems(){
+    document.getElementById(`itemRowContainer`).replaceChildren()
     let pushed = 0
     let rowNum = 0
 

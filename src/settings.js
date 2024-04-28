@@ -3,10 +3,10 @@
 const SETTINGS_DESCS = [
     "Circle Click Confirmation", "Ordinary Annihilation Confirmation", "Unusual Annihilation Confirmation", "Extraordinary Annihilation Confirmation",
     "Legendary Annihilation Confirmation", "Remembrance Confirmation", "Circle Speed Information", "Item Grouping",
-    "x1000 Gameplay Speed",
+    "x1000 Gameplay Speed", "Multiple Items Per Tick",
 ]
 const settingsDefaults = [
-    true, true, true, true, true, true, true, true, false,
+    true, true, true, true, true, true, true, true, false, true,
 ]
 function settingsToggle(i){
     if (i === -1){
@@ -22,7 +22,7 @@ function settingsToggle(i){
 
     data.sToggles[i] = !data.sToggles[i]
 
-    DOM(`settingsToggle${i}`).innerHTML = `${i > 8 ? '' : 'Toggle the'} ${SETTINGS_DESCS[i]} ${settingsColor(data.sToggles[i])}`
+    DOM(`settingsToggle${i}`).innerHTML = `${i > 7 ? 'Toggle ' : 'Toggle the'} ${SETTINGS_DESCS[i]} ${settingsColor(data.sToggles[i])}`
     save()
 }
 function settingsColor(bool){
@@ -59,8 +59,9 @@ function loadSettings(){
     DOM(`offlineProgressToggle`).innerHTML = `Toggle Offline Progress ${settingsColor(data.offline)}`
     DOM(`gwaifyToggle`).innerHTML = `<img src='https://cdn.discordapp.com/emojis/853002327362895882.webp?size=24'> Display ${settingsColor(data.gword.enabled)}`
     DOM(`changePrecision`).children[0].innerHTML = `[${data.precision}]`
+    DOM(`changeMsInterval`).children[0].innerHTML = `[${data.ms}ms]`
 
     for (let i = 0; i < SETTINGS_DESCS.length; i++) {
-        DOM(`settingsToggle${i}`).innerHTML = `${i > 8 ? '' : 'Toggle the'} ${SETTINGS_DESCS[i]} ${settingsColor(data.sToggles[i])}`
+        DOM(`settingsToggle${i}`).innerHTML = `${i > 7 ? 'Toggle ' : 'Toggle the'} ${SETTINGS_DESCS[i]} ${settingsColor(data.sToggles[i])}`
     }
 }
