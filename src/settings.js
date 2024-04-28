@@ -38,6 +38,13 @@ function changePrecision(x){
     DOM(`changePrecision`).children[0].innerHTML = `[${data.precision}]`
 }
 
+function toggleItemSpriteStyle(){
+    data.itemSpriteStyle++
+    if (data.itemSpriteStyle >= itemSpriteStyles.length) data.itemSpriteStyle = 0
+    DOM(`changeItemSpriteStyle`).children[0].innerHTML = `[${itemSpriteStyles[data.itemSpriteStyle]}]`
+    DOM(`changeItemSpriteStyle`).children[0].style.color = itemSpriteTextColors[data.itemSpriteStyle]
+}
+
 // Changes the Millisecond Interval
 function changeMs(x){
     if (!x) return

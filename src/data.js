@@ -23,6 +23,7 @@ function getDefaultObject() {
         offline: true,
         gword: {unl: false, enabled: false},
         ms: 50,
+        itemSpriteStyle: 0,
     }
 }
 let data = getDefaultObject()

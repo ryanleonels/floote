@@ -120,29 +120,58 @@ const items = [
     ]
 ]
 
-const itemIcons = {
-    "Broken Wheel" : "res/items/broken_wheel.png",
-    "Burnt Match" : "res/items/burnt_match.png",
-    "Shattered Plate" : "res/items/broken_plate.png",
+const itemSpriteStyles = ["Default", "Meta"]
 
-    "Golden Coin" : "res/items/golden_coin.png",
-    "Circle Statue" : "res/items/circle_statue.png",
-    "Cube" : "res/items/cube.png",
+const itemSpriteTextColors = ['#2da000', 'goldenrod'];
 
-    "Great Wheel" : "res/items/greater_wheel.png",
-    "Cup of Water" : "res/items/water_glass.png",
-    "Glasses" : "res/items/glasses.png",
+const itemIcons = [
+    {
+        "Broken Wheel" : "res/items/default/broken_wheel.png",
+        "Burnt Match" : "res/items/default/burnt_match.png",
+        "Shattered Plate" : "res/items/default/broken_plate.png",
 
-    "Golden Compass" : "res/items/golden_compass.png",
-    "Eternal Flame" : "res/items/bad_flame.png",
-    "Miniature Circle" : "res/items/mini_circle.png",
+        "Golden Coin" : "res/items/default/golden_coin.png",
+        "Circle Statue" : "res/items/default/circle_statue.png",
+        "Cube" : "res/items/default/cube.png",
 
-    "Light" : "res/items/light.png",
-    "Thought" : "res/items/thought.png",
-    "Wilted Clover" : "res/items/wilted_clover.png",
+        "Great Wheel" : "res/items/default/greater_wheel.png",
+        "Cup of Water" : "res/items/default/water_glass.png",
+        "Glasses" : "res/items/default/glasses.png",
 
-    "Four-Leaf Clover" : "res/items/clover.png",
-}
+        "Golden Compass" : "res/items/default/golden_compass.png",
+        "Eternal Flame" : "res/items/default/bad_flame.png",
+        "Miniature Circle" : "res/items/default/mini_circle.png",
+
+        "Light" : "res/items/default/light.png",
+        "Thought" : "res/items/default/thought.png",
+        "Wilted Clover" : "res/items/default/wilted_clover.png",
+
+        "Four-Leaf Clover" : "res/items/default/clover.png",
+    },
+    {
+        "Broken Wheel" : "res/items/meta/broken-wheel.png",
+        "Burnt Match" : "res/items/meta/burnt-match.png",
+        "Shattered Plate" : "res/items/meta/broken-plate.png",
+
+        "Golden Coin" : "res/items/meta/golden-coin.png",
+        "Circle Statue" : "res/items/meta/circle-statue.png",
+        "Cube" : "res/items/meta/cube.png",
+
+        "Great Wheel" : "res/items/meta/great-wheel.png",
+        "Cup of Water" : "res/items/meta/cup.png",
+        "Glasses" : "res/items/meta/glasses.png",
+
+        "Golden Compass" : "res/items/meta/golden-compass.png",
+        "Eternal Flame" : "res/items/meta/eternal-flame.png",
+        "Miniature Circle" : "res/items/meta/miniature-circle.png",
+
+        "Light" : "res/items/meta/light.png",
+        "Thought" : "res/items/meta/thought.png",
+        "Wilted Clover" : "res/items/meta/wilted-clover.png",
+
+        "Four-Leaf Clover" : "res/items/meta/clover.png",
+    },
+]
 
 const itemPluralNames = {
     "Broken Wheel" : "Broken Wheels",
@@ -175,4 +204,4 @@ function getRandomItem(rarity){
     }
 }
 
-let getItemSprite = (name) => itemIcons[name]
+let getItemSprite = (style, name) => itemIcons[style][name]

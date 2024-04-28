@@ -22,7 +22,7 @@ function makeItems(){
                 item.setAttribute("tooltip", `A ${rarity.name} ${itemsMap[i][j].name}${i !== 6 ? `\n${rarity.effectDesc}` : ``}\n\n"${itemsMap[i][j].desc}"`)
 
                 let icon = document.createElement('img')
-                icon.src = `${getItemSprite(itemsMap[i][j].name)}`
+                icon.src = `${getItemSprite(data.itemSpriteStyle, itemsMap[i][j].name)}`
 
                 item.append(icon)
                 let color = rarity.id === 0 ? '#969696' : rarity.color
@@ -57,7 +57,7 @@ function makeItems(){
             item.setAttribute("tooltip", `A ${rarity.name} ${data.items[i][j].name}${i !== 6 ? `\n${rarity.effectDesc}` : ``}\n\n"${data.items[i][j].desc}"`)
 
             let icon = document.createElement('img')
-            icon.src = `${getItemSprite(data.items[i][j].name)}`
+            icon.src = `${getItemSprite(data.itemSpriteStyle, data.items[i][j].name)}`
 
             item.append(icon)
             document.getElementById(`itemRow${rowNum}`).append(item)
