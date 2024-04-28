@@ -4,6 +4,7 @@ const TABS = ["ex", "items", "merge", "remembrance", "ach", "settings"]
 const uHTML = {
     update(){
         updateCircleHTML()
+        updateAnnihilationTexts()
     },
     load(){
         //Load Tab Displays

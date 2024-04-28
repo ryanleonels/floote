@@ -61,7 +61,7 @@ function annihilate(i){
         text.classList.remove("fade-in");
     }, 3000);
 
-    text.innerHTML = `You got a <span>${rarities[i+1].name} <b>${generateAnnihilationGainText(gainedItemNames)}</b></span>!`
+    text.innerHTML = `You got ${data.sToggles[7] ? "" : "a "}<span>${rarities[i+1].name} <b>${generateAnnihilationGainText(gainedItemNames)}</b></span>!`
     text.children[0].style.color = rarities[i+1].color
 
     updateAnnihilationTexts()
@@ -88,7 +88,7 @@ function generateAnnihilationGainText(gainedItemNames){
         }
         gainedItemNameList = []
         for (let i = 0; i < gainedItemList.length; i++) {
-            gainedItemNameList.push(gainedItemList[i].total + " " + gainedItemList[i].name + (gainedItemList[i].total > 1 ? "s" : ""));
+            gainedItemNameList.push(gainedItemList[i].total + " " + gainedItemList[i].name + (gainedItemList[i].total > 1 ? (gainedItemList[i].name.substr(-2) == "es" ? "" : (gainedItemList[i].name.substr(-1) == "s" ? "es" : "s")) : ""));
         }
         bound = gainedItemNameList.length
     }
