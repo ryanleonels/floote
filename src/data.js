@@ -91,7 +91,7 @@ function exportSave(){
         exportedDataText.value = exportedData;
         document.body.appendChild(exportedDataText);
         exportedDataText.select();
-        exportedDataText.setSelectionRange(0, 99999);
+        exportedDataText.setSelectionRange(0, 999999999);
         document.execCommand("copy");
         document.body.removeChild(exportedDataText);
         createAlert('Export Successful', 'Your Data has been copied to the clipboard!', 'Thanks!')
