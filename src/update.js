@@ -5,6 +5,7 @@ const uHTML = {
     update(){
         updateCircleHTML()
         updateAnnihilationTexts()
+        refreshRemembrance()
     },
     load(){
         //Load Tab Displays
