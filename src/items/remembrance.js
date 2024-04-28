@@ -55,6 +55,7 @@ function remember(){
             if(data.items[4][i].natural) natural++
             data.items[4] = data.items[4].slice(0, i).concat(data.items[4].slice(i+1))
             removed++
+            i--
         }
     }
     for (let i = 0; i < itemsMap[4].length; i++) {
