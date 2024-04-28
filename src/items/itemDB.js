@@ -144,6 +144,30 @@ const itemIcons = {
     "Four-Leaf Clover" : "res/items/clover.png",
 }
 
+const itemPluralNames = {
+    "Broken Wheel" : "Broken Wheels",
+    "Burnt Match" : "Burnt Matches",
+    "Shattered Plate" : "Shattered Plates",
+
+    "Golden Coin" : "Golden Coins",
+    "Circle Statue" : "Circle Statues",
+    "Cube" : "Cubes",
+
+    "Great Wheel" : "Great Wheels",
+    "Cup of Water" : "Cups of Water",
+    "Glasses" : "Glasses",
+
+    "Golden Compass" : "Golden Compasses",
+    "Eternal Flame" : "Eternal Flames",
+    "Miniature Circle" : "Miniature Circles",
+
+    "Light" : "Lights",
+    "Thought" : "Thoughts",
+    "Wilted Clover" : "Wilted Clovers",
+
+    "Four-Leaf Clover" : "Four-Leaf Clovers",
+}
+
 function getRandomItem(rarity){
     let range = items[rarity].length
     return {

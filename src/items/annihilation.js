@@ -88,7 +88,7 @@ function generateAnnihilationGainText(gainedItemNames){
         }
         gainedItemNameList = []
         for (let i = 0; i < gainedItemList.length; i++) {
-            gainedItemNameList.push(gainedItemList[i].total + " " + gainedItemList[i].name + (gainedItemList[i].total > 1 ? (gainedItemList[i].name.substr(-2) == "es" ? "" : (gainedItemList[i].name.substr(-1) == "s" ? "es" : "s")) : ""));
+            gainedItemNameList.push(gainedItemList[i].total + " " + (gainedItemList[i].total > 1 ? itemPluralNames[gainedItemList[i].name] : gainedItemList[i].name));
         }
         bound = gainedItemNameList.length
     }
